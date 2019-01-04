@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace zad1
 {
     class write
     {
-         int numericParametr;
+        int numericParametr;
         string divisible2;
         string divisible3;
-        
+
         public write()
         {
             numericParametr = -1;
@@ -19,7 +18,7 @@ namespace zad1
         public int Validation()
         {
             string temporary;
-            int parametr=-1;
+            int parametr = -1;
             Console.WriteLine("Choose number between 0 and 1000");
             while (parametr < 0 || parametr > 1000)
             {
@@ -37,9 +36,17 @@ namespace zad1
                 {
                     Console.WriteLine(EX1.Message);
                 }
-                catch (Exception EX2)
+                catch (IOException EX2)
                 {
                     Console.WriteLine(EX2.Message);
+                }
+                catch (ArgumentOutOfRangeException EX3)
+                {
+                    Console.WriteLine(EX3.Message);
+                }
+                catch (Exception EX4)
+                {
+                    Console.WriteLine(EX4.Message);
                 }
 
                 if (parametr >= 0 && parametr <= 1000)
@@ -47,7 +54,8 @@ namespace zad1
                     break;
 
                 }
-                else {
+                else
+                {
                     Console.WriteLine("The number does not fit in the numeric range, choose between 0 and 1000");
                 }
             }
@@ -57,13 +65,27 @@ namespace zad1
         public void FizzBuzz(int numericParametr)
         {
             this.numericParametr = numericParametr;
-            if (this.numericParametr % 2 == 0 && this.numericParametr % 3 == 0 )
-                Console.WriteLine(divisible2 + divisible3);
-            if (this.numericParametr % 2 == 0 && this.numericParametr % 3 != 0 )
-                Console.WriteLine(divisible2);
-            if (this.numericParametr % 2 != 0 && this.numericParametr % 3 == 0 )
-                Console.WriteLine(divisible3);
-            
+            try
+            {
+                if (this.numericParametr % 2 == 0 && this.numericParametr % 3 == 0)
+                {
+                    Console.WriteLine(divisible2 + divisible3);
+                }
+
+                if (this.numericParametr % 2 == 0 && this.numericParametr % 3 != 0)
+                {
+                    Console.WriteLine(divisible2);
+                }
+                if (this.numericParametr % 2 != 0 && this.numericParametr % 3 == 0)
+                {
+                    Console.WriteLine(divisible3);
+                }
+            }
+            catch (Exception EX)
+            {
+                Console.WriteLine(EX.Message);
+            }
+
         }
     }
 }
